@@ -9,7 +9,7 @@
 
 	<tag>
 		<name>formatDate</name>
-		<tag-class>com.yxl.tag.FormatDateTag</tag-class>
+		<tag-class>com.yxlisv.tag.FormatDateTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>value</name>
@@ -25,7 +25,7 @@
 	
 	<tag>
 		<name>stringUtil</name>
-		<tag-class>com.yxl.tag.StringUtilTag</tag-class>
+		<tag-class>com.yxlisv.tag.StringUtilTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>value</name>

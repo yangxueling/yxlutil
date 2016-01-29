@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
 Class-Path: .
-Main-Class: com.yxl.plugins.jenkins.SvnIncrement
+Main-Class: com.yxlisv.plugins.jenkins.SvnIncrement
