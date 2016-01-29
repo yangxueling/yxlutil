@@ -3,8 +3,8 @@ package com.yntsoft.nlplatform.utils.doc;
 import java.io.File;
 import java.util.Map;
 
-import com.yxl.util.file.FilePathUtil;
-import com.yxl.util.system.SysCmdHandle;
+import com.yxlisv.util.file.FilePathUtil;
+import com.yxlisv.util.system.SysCmdHandle;
 
 /**
  * pdf 文件转swf文件，利用工具 pdf2swf.exe
