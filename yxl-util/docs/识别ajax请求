@@ -1,0 +1,4 @@
+String header=request.getHeader("x-requested-with");
+if(header.equals("XMLHttpRequest")){//ajax方式
+	response.getOutputStream().print("not_login");
+}

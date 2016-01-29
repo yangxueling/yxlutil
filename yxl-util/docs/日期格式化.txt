@@ -1,0 +1,6 @@
+后台的日期类型为long，传到页面显示需要格式化，框架中提供了一个tag标签：
+
+<%@ taglib prefix="yxl" uri="http://www.xy.com/yxl"%>
+<yxl:formatDate value="${××.createtime }"/>
+参数value传入一个long型的数据
+参数type可以传值：time/date/year/month/day/hour/minute/second/hourMinute/hourMinuteSecond，默认为time；time包含了时间，date只包含日期

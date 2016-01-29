@@ -1,0 +1,18 @@
+1、form 表单
+enctype="multipart/form-data"
+
+2、文件校验
+FileValidater.type("png,jpg,jpeg,gif", upFile);
+FileValidater.maxSize(5, upFile);
+
+3、保存文件
+if(FileValidater.notNull(upFile)){
+	String fileDir = "/resources/" + fileType + "/" + resources.getUser().getId() + "/";
+	String fileName = null;
+	fileName = FileUtil.saveFile(fileDir, upFile);
+}
+
+4、上传文件的后台如果返回的是ajax数据，不要使用 @ResponseBody，spring数据类型问题IE8某些版本解析不了(jquery form插件)，使用 writeOfText("text", response); 方法代替
+
+5、IE8,IE9不能用js去click type 为 file 的 input。可以把文件的input变为透明，放到图片按钮上，如：
+<input class="upFile" name="upFile" type="file" style="width:70px;filter:alpha(opacity=0); -moz-opacity:0.0;opacity:0.0;-khtml-opacity: 0.0; cursor:pointer; margin-top:10px; margin-left:95px"/>

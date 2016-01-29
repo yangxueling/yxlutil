@@ -1,0 +1,14 @@
+添加公司时，在编辑页面需要判断公司名称是否重复，可以这样做：
+1、引入<%@ include file="/jsp/commons/jqueryValidation.jsp"%>
+2、在要验证的input标签上加class：inputServerCheck，加上href指向后台方法
+	如:<input type="text" name="name" class="input4 required inputServerCheck" maxlength="50" href="${pageContext.request.contextPath }/admin/company/checkName">
+3、后台编写
+	如：
+	@RequestMapping(value={"/admin/company/checkName"}, produces="application/json; charset=utf-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String checkName(String name) {
+		
+		List list = companyService.findBy("name", name);
+		if(list.size()>0) return "该公司名称已经存在";
+		return "success";
+	}

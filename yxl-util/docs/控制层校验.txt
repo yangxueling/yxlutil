@@ -1,0 +1,12 @@
+1、全部自动校验
+if(result.hasErrors()) {//校验数据
+	sendError(result);
+}
+
+
+
+2、部分字段校验
+String[] vldArgs = {"email", "sex", "realName"};//要校验的字段
+if(hasError(result, vldArgs)) {//校验数据
+	sendError(result, vldArgs);
+}

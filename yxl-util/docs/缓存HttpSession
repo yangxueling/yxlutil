@@ -1,0 +1,5 @@
+有时候需要通过HttpSession 的 Id 获取session对象，可以使用：HttpSessionCache 工具类
+
+如：用户登录成功之后
+HttpSessionCache.startCleanSession(1);//开启自动清理session缓存线程，可以不调用这个方法，在首次addSession的时候会自动开启，默认时间为100分钟
+HttpSessionCache.addSession(getSession());//缓存session

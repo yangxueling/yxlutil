@@ -1,0 +1,103 @@
+输入框：
+
+<div class="f7 selectIpt" style="width:105px;height: 24px;" onmouseover="onSelectMouseover(this);" onmouseout="onSelectMouseout(this);">
+	<input type="hidden" class="selectId customerId" name="customer.id" value="${priceOrder.customer.id }" />
+	<input type="text" placeholder="客户" name="customerName" class="input4 required ajaxLink selectName" onkeyup="onSelectIptKeyup(this);" padding="0" nobutton="true" onStart="startLoading" href="${pageContext.request.contextPath }/manager/customer/select.html" title="选择客户" method="get" onSuccess="openWindow" value="${priceOrder.customer.name }" />
+	<strong class="clearSelect" onclick="onSelectClear(this);" style="display: none;"></strong>
+	<span class='p_hov ajaxLink'  padding="0" nobutton="true" href="${pageContext.request.contextPath }/manager/customer/select.html" title="选择客户" method="get" onSuccess="openWindow"></span>
+</div>
+
+
+select页面：
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/jsp/commons/jstl.jsp" %>
+<div class="search_condition" style="padding: 0;">
+	<div class="subSearch">
+		<form class="ajaxForm searchForm" waitStr="查询中，请稍等..." targetDiv="aui_content" action="${pageContext.request.contextPath }/manager/customer/select.html" method="post">
+			<table class="borderCollapse">
+				<tbody>
+					<tr>
+						<td>
+							<input style="margin-top: 5px;" type="text" placeholder="名称" name="name" value="<c:out value="${srMap.name }"/>"/>
+						</td>
+						<td>
+							<select name="type">
+								<option value="">类型</option>
+								<option <c:if test="${srMap.type=='0' }"> selected="selected"</c:if> value="0"><fmt:message key="Customer.type_0"/></option>
+								<option <c:if test="${srMap.type=='1' }"> selected="selected"</c:if> value="1"><fmt:message key="Customer.type_1"/></option>
+								<option <c:if test="${srMap.type=='2' }"> selected="selected"</c:if> value="2"><fmt:message key="Customer.type_2"/></option>
+								<option <c:if test="${srMap.type=='-1' }"> selected="selected"</c:if> value="-1"><fmt:message key="Customer.type_-1"/></option>
+								<option <c:if test="${srMap.type=='-2' }"> selected="selected"</c:if> value="-2"><fmt:message key="Customer.type_-2"/></option>
+							</select>
+						</td>
+						<td>
+							<a href="javascript:void(0);" class="mini-button"><span class="mini-button-low-text submit">查询</span></a>
+							<script>
+								$(".searchForm").find(".submit").bind("click", function(){
+									$(".searchForm").submit();
+								});
+							</script>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<div class="tableBox selectResult" style="min-height: 400px;">  
+ 	<table cellspacing="0" cellpadding="0" border="0" class="itemlist table_white">
+		<thead>
+			<tr class="trgray">
+				<th>名称</th>
+				<th>地址</th>
+				<th>类型</th>
+				<th>客户类别</th>
+				<th style="width: 60px;"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${fn:length(page.result)<1 }">
+				<tr><td colspan="6">没有找到符合条件的数据</td></tr>
+			</c:if>
+			<c:forEach items="${page.result}" var="customer">
+				<tr dataKey="${customer.id }" dataVal="${customer.name }" landline="${customer.landline }" fax="${customer.fax }" address="${customer.area.city.province.name }${customer.area.city.name }${customer.area.name }${customer.address }">
+					<td><c:out value="${customer.name }"/></td>
+					<td><c:out value="${customer.address }"/></td>
+					<td><fmt:message key="Customer.type_${customer.type }"/></td>
+					<td><c:out value="${customer.customerType.name }"/></td>
+					<td><a href="javascript:void(0);" class="mini-button"><span class="mini-button-low-text submit">选择</span></a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+<div style="clear:both;"></div>
+<div class="selectPageDiv"><%@ include file="/ui/components/page/popbox/default.jsp"%></div>
+<script>
+	$(".selectResult").find("tbody tr").bind("dblclick", function(){
+		onSelect($(this));
+	});
+	
+	$(".selectResult").find(".submit").bind("click", function(){
+		onSelect($(this).closest("tr"));
+	});
+	
+	function onSelect($tr){
+		var dataKey = $tr.attr("dataKey");
+		var dataVal = $tr.attr("dataVal");
+		var landline = $tr.attr("landline");
+		var fax = $tr.attr("fax");
+		var address = $tr.attr("address");
+		if(dataKey==undefined || dataVal==undefined) return false;
+		var $window = $tr.closest(".aui_window");
+		var objId = $window.attr("objId");
+		var $obj = $("#"+objId);
+		$obj.parent().find(".selectId").val(dataKey);
+		$obj.parent().find(".selectName").val(dataVal);
+		$obj.closest("form").find(".customerTel").val(landline);
+		$obj.closest("form").find(".customerFax").val(fax);
+		$obj.closest("form").find(".customerAddress").val(address);
+		$window.find(".aui_close").click();
+	}
+</script>

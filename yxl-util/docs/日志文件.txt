@@ -1,0 +1,9 @@
+日志消息用户标记：
+可以在日志消息中加上用户的标识
+在用户登录成功后：LogbackUtil.setUserMark("昵称", request.getSession());//日志标记
+
+
+日志文件标记：
+可以在日志文件前面加上一个标记，如错误文件的日志文件名为：common-2014-07-18.0.log，可以把调用google平台产生的错误消息放到文件：google-2014-07-18.0.log中
+在用户登录成功后：LogbackUtil.setFileMark("google", request.getSession());//日志标记
+此功能也可以为每一个用户生成一个单独的日志文件，文件标记可以存放用户的ID

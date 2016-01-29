@@ -1,0 +1,7 @@
+在RequestMapping 下配置 @ResponseBody
+@RequestMapping(value={"/test.shtml"}, produces="application/json; charset=utf-8", method=RequestMethod.POST)
+@ResponseBody
+
+注意：path后缀如果使用*.htm,*.html等，spring mvc 3.2+ 默认会采用[text/html]编码，会报错： 
+Failed to load resource: the server responded with a status of 406 (Not Acceptable) 
+改成*.json,*.shtml就可以

@@ -1,0 +1,2 @@
+1、拦截路径中存在“update”的请求：<mvc:mapping path="/**/update/**" />
+2、拦截后缀为“.hpp”的请求：<mvc:mapping path="/**/*.hpp" />

@@ -1,0 +1,10 @@
+应用场景，如：
+	软件中有多套公司的数据，用户登录之后查询数据时不应该看见其他公司的数据，可以在用户登录成功后这样写：
+	SearchRequirement.addDataIsolation("company.id", "此处填写公司ID");
+	这样在每次分页查询或者调用getList方法时，系统会自动把这个条件添加到hql语句中
+	
+	此种场景要发挥最大效果有3点需要注意：
+		1、要查询的表都要关联Company对象
+		2、Service层的srFields中要有"company.id"
+		3、只对Service层的pageSearch和getList方法生效
+		不满足以上3点时，数据隔离无效

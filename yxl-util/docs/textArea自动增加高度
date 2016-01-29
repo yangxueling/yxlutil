@@ -1,0 +1,4 @@
+<textarea name="content" class="adaptive_box" onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'">${courseware.coursewareInfo.content }</textarea>
+
+onpropertychange="this.style.height=this.scrollHeight + 'px'"
+oninput="this.style.height=this.scrollHeight + 'px'"

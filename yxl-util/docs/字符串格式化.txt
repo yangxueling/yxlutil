@@ -1,0 +1,12 @@
+<%@ taglib prefix="yxl" uri="http://www.xy.com/yxl"%>
+<yxl:stringUtil value="sss bb dsf " length="7"/>
+参数：	value	字符串
+		type	类型：
+					default：清除空白字符
+					clearHtml：清除html代码
+					unicode：字符的unicode编码
+					clearXSS：清除XSS跨站漏洞代码
+					lower：小写字母
+					upper：大写字母
+					desc:  获取格式良好的描述代码，会把换行符，<br/>替换为<p>标签包裹
+		length	长度，超过该值会被截取

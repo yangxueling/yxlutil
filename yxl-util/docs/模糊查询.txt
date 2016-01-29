@@ -1,0 +1,12 @@
+系统中有一个模糊查询工具类：SearchRequirement
+
+1、配置字段可以做为模糊查询的条件和排序使用
+private String []fieldNames = {"id","email","qq","mobile","birthday","info","user.id"};
+
+2、直接从request中获取请求map，用map和配置的字段构造模糊查询工具
+SearchRequirement sr = this.getSearchRequirement(fieldNames, srMap);//模糊查询工具
+
+3、查询
+return userInfoDao.getList(sr);
+
+注意：模糊查询工具类主要是用来做模糊查询的，不限制查询条件数量，简化操作。也可以用来做一些简单的其他查询，但不建议这样使用
