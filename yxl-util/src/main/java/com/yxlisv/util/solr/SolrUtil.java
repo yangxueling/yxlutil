@@ -28,38 +28,40 @@ import com.yxlisv.util.math.NumberUtil;
 import com.yxlisv.util.resource.PropertiesUtil;
 
 /**
- *     ┏┓　　　┏┓
- *   ┏┛┻━━━┛┻┓
- *   ┃　　　　　　　┃ 　
- *   ┃　　　━　　　┃
- *   ┃　┳┛　┗┳　┃
- *   ┃　　　　　　　┃
- *   ┃　　　┻　　　┃
- *   ┃　　　　　　　┃
- *   ┗━┓　　　┏━┛
- *   　　┃　　　┃神兽保佑
- *   　　┃　　　┃永无BUG！
- *   　　┃　　　┗━━━┓
- *   　　┃　　　　　　　┣┓
- *   　　┃　　　　　　　┏┛
- *   　　┗┓┓┏━┳┓┏┛
- *   　　　┃┫┫　┃┫┫
- *   　　　┗┻┛　┗┻┛
- *
- * Solr搜索引擎工具类
-
-	<dependency>
-		<groupId>org.apache.solr</groupId>
-		<artifactId>solr-solrj</artifactId>
-		<version>5.3.1</version>
-	</dependency>
-	
+  <pre>
+      ┏┓　　　┏┓
+    ┏┛┻━━━┛┻┓
+    ┃　　　　　　　┃ 　
+    ┃　　　━　　　┃
+    ┃　┳┛　┗┳　┃
+    ┃　　　　　　　┃
+    ┃　　　┻　　　┃
+    ┃　　　　　　　┃
+    ┗━┓　　　┏━┛
+    　　┃　　　┃神兽保佑
+    　　┃　　　┃永无BUG！
+    　　┃　　　┗━━━┓
+    　　┃　　　　　　　┣┓
+    　　┃　　　　　　　┏┛
+    　　┗┓┓┏━┳┓┏┛
+    　　　┃┫┫　┃┫┫
+    　　　┗┻┛　┗┻┛
+ 
+  	Solr搜索引擎工具类
+  	
 	solr_home conf schema.xml 字段配置示例：
 	<field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
 	<field name="name" type="text_mmseg4j_Complex" indexed="true" stored="true" />
 	<field name="update_time" type="long" indexed="true" stored="true"/>
 	<field name="type" type="string" indexed="true" stored="true" />
+	
+	<dependency>
+		<groupId>org.apache.solr</groupId>
+		<artifactId>solr-solrj</artifactId>
+		<version>5.3.1</version>
+	</dependency>
 	......
+	</pre>
  * @author 杨雪令
  */
 public class SolrUtil {

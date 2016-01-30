@@ -15,23 +15,25 @@ import com.yxlisv.util.db.SqlUtil;
 import com.yxlisv.util.redis.JedisUtil;
 
 /**
- *     ┏┓　　　┏┓
- *   ┏┛┻━━━┛┻┓
- *   ┃　　　　　　　┃ 　
- *   ┃　　　━　　　┃
- *   ┃　┳┛　┗┳　┃
- *   ┃　　　　　　　┃
- *   ┃　　　┻　　　┃
- *   ┃　　　　　　　┃
- *   ┗━┓　　　┏━┛
- *   　　┃　　　┃神兽保佑
- *   　　┃　　　┃永无BUG！
- *   　　┃　　　┗━━━┓
- *   　　┃　　　　　　　┣┓
- *   　　┃　　　　　　　┏┛
- *   　　┗┓┓┏━┳┓┏┛
- *   　　　┃┫┫　┃┫┫
- *   　　　┗┻┛　┗┻┛
+ <pre>
+      ┏┓　　　┏┓
+    ┏┛┻━━━┛┻┓
+    ┃　　　　　　　┃ 　
+    ┃　　　━　　　┃
+    ┃　┳┛　┗┳　┃
+    ┃　　　　　　　┃
+    ┃　　　┻　　　┃
+    ┃　　　　　　　┃
+    ┗━┓　　　┏━┛
+    　　┃　　　┃神兽保佑
+    　　┃　　　┃永无BUG！
+    　　┃　　　┗━━━┓
+    　　┃　　　　　　　┣┓
+    　　┃　　　　　　　┏┛
+    　　┗┓┓┏━┳┓┏┛
+    　　　┃┫┫　┃┫┫
+    　　　┗┻┛　┗┻┛
+    </pre>
  *
  * Mybatis Redis 缓存实现
  * namespace的命名规则：如namespace为：org.*.*.HotUserMapper / org.*.*.HotUser，那么表名为hot_user / t_hot_user

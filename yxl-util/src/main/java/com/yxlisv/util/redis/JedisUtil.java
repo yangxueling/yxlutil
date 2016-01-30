@@ -27,23 +27,25 @@ import com.yxlisv.util.redis.adapter.impl.JedisAdapterImpl;
 import com.yxlisv.util.resource.PropertiesUtil;
 
 /**
- *     ┏┓　　　┏┓
- *   ┏┛┻━━━┛┻┓
- *   ┃　　　　　　　┃ 　
- *   ┃　　　━　　　┃
- *   ┃　┳┛　┗┳　┃
- *   ┃　　　　　　　┃
- *   ┃　　　┻　　　┃
- *   ┃　　　　　　　┃
- *   ┗━┓　　　┏━┛
- *   　　┃　　　┃神兽保佑
- *   　　┃　　　┃永无BUG！
- *   　　┃　　　┗━━━┓
- *   　　┃　　　　　　　┣┓
- *   　　┃　　　　　　　┏┛
- *   　　┗┓┓┏━┳┓┏┛
- *   　　　┃┫┫　┃┫┫
- *   　　　┗┻┛　┗┻┛
+ <pre>
+      ┏┓　　　┏┓
+    ┏┛┻━━━┛┻┓
+    ┃　　　　　　　┃ 　
+    ┃　　　━　　　┃
+    ┃　┳┛　┗┳　┃
+    ┃　　　　　　　┃
+    ┃　　　┻　　　┃
+    ┃　　　　　　　┃
+    ┗━┓　　　┏━┛
+    　　┃　　　┃神兽保佑
+    　　┃　　　┃永无BUG！
+    　　┃　　　┗━━━┓
+    　　┃　　　　　　　┣┓
+    　　┃　　　　　　　┏┛
+    　　┗┓┓┏━┳┓┏┛
+    　　　┃┫┫　┃┫┫
+    　　　┗┻┛　┗┻┛
+    </pre>
  *
  * Jedis工具类 jedis最低版本2.7.2
  * @author 杨雪令
