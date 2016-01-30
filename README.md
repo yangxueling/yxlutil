@@ -11,9 +11,8 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
-		<dependency>
-			<groupId>com.yxlisv</groupId>
-			<artifactId>yxl-util</artifactId>
-			<version>1.3.1-SNAPSHOT</version>
-		</dependency>
+	<dependency>
+		<groupId>com.yxlisv</groupId>
+		<artifactId>yxl-util</artifactId>
+		<version>1.3.1-SNAPSHOT</version>
+	</dependency>
