@@ -1,4 +1,11 @@
-#version 1.3.1
+#version 1.3 release
+	<dependency>
+		<groupId>com.yxlisv</groupId>
+		<artifactId>yxl-util</artifactId>
+		<version>1.3</version>
+	</dependency>
+
+#version 1.3.1 snapshot
 	<repositories>
 		<repository>
 			<id>snapshots-oss</id>
