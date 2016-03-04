@@ -276,6 +276,45 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.9.1</version>
+				<configuration>
+					<tags>
+						<tag>
+							<name>param</name>
+							<placement>a</placement>
+							<head>参数：</head>
+						</tag>
+						<tag>
+							<name>return</name>
+							<placement>a</placement>
+							<head>返回值：</head>
+						</tag>
+						<tag>
+							<name>author</name>
+							<placement>a</placement>
+							<head>作者：</head>
+						</tag>
+						<tag>
+							<name>createTime</name>
+							<placement>a</placement>
+							<head>创建时间：</head>
+						</tag>
+						<tag>
+							<name>updateTime</name>
+							<placement>a</placement>
+							<head>修改时间：</head>
+						</tag>
+						<tag>
+							<name>version</name>
+							<placement>a</placement>
+							<head>版本号：</head>
+						</tag>
+						<tag>
+							<name>copyRight</name>
+							<placement>a</placement>
+							<head>版权：</head>
+						</tag>
+					</tags>
+				</configuration>
 				<executions>
 					<execution>
 						<phase>package</phase>
