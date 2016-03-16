@@ -396,11 +396,12 @@ public class WatermarkFactory {
 	 * @param position 位置(0：居中，1：左上角，2：右上角，3：左下角，4：右下角)
 	 * @param zoom 缩放（宽度所占比例）
 	 * @param alpha 透明度
+	 * @param spacing 间距(默认为1，0-10)
 	 * @param savePath 新生成的水印图片路径
 	 * @throws Exception 
 	 */
-	public static void createImageWatermark(String watermarkPath, int width, int height, int position, float zoom, float alpha, String savePath) throws Exception{
-		createImageWatermark(watermarkPath, width, height, position, zoom, alpha, null, savePath);
+	public static void createImageWatermark(String watermarkPath, int width, int height, int position, float zoom, float alpha, int spacing, String savePath) throws Exception{
+		createImageWatermark(watermarkPath, width, height, position, zoom, alpha, spacing, null, savePath);
 	}
 	
 	
@@ -410,12 +411,13 @@ public class WatermarkFactory {
 	 * @param position 位置(0：居中，1：左上角，2：右上角，3：左下角，4：右下角)
 	 * @param zoom 缩放（宽度所占比例）
 	 * @param alpha 透明度
+	 * @param spacing 间距(默认为1，0-10)
 	 * @param targetImage 目标图片，要给哪张图片添加水印（可以不传，会生成一张空白的水印图）
 	 * @param savePath 新生成的水印图片路径
 	 * @throws Exception 
 	 */
-	public static void createImageWatermark(String watermarkPath, int position, float zoom, float alpha, BufferedImage targetImage, String savePath) throws Exception{
-		createImageWatermark(watermarkPath, 0, 0, position, zoom, alpha, targetImage, savePath);
+	public static void createImageWatermark(String watermarkPath, int position, float zoom, float alpha, int spacing, BufferedImage targetImage, String savePath) throws Exception{
+		createImageWatermark(watermarkPath, 0, 0, position, zoom, alpha, spacing, targetImage, savePath);
 	}
 		
 	
@@ -427,11 +429,12 @@ public class WatermarkFactory {
 	 * @param position 位置(0：居中，1：左上角，2：右上角，3：左下角，4：右下角)
 	 * @param zoom 缩放（宽度所占比例）
 	 * @param alpha 透明度
+	 * @param spacing 间距(默认为1，0-10)
 	 * @param targetImage 目标图片，要给哪张图片添加水印（可以不传，会生成一张空白的水印图）
 	 * @param savePath 新生成的水印图片路径
 	 * @throws Exception 
 	 */
-	private static void createImageWatermark(String watermarkPath, int width, int height, int position, float zoom, float alpha, BufferedImage targetImage, String savePath) throws Exception{
+	private static void createImageWatermark(String watermarkPath, int width, int height, int position, float zoom, float alpha, int spacing, BufferedImage targetImage, String savePath) throws Exception{
 		
 		if(watermarkPath==null || watermarkPath.trim().length()<1) return;
 		
@@ -455,9 +458,8 @@ public class WatermarkFactory {
 		
 		//绘制水印
 		BufferedImage wmbf = ImageUtil.readImage(watermarkPath);
-		int spacing = 10;//间距
-		int wmbfx = 10;//绘制起点x坐标
-		int wmbfy = 10;//绘制起点y坐标
+		int wmbfx = spacing;//绘制起点x坐标
+		int wmbfy = spacing;//绘制起点y坐标
 		int wmbfwidth = wmbf.getWidth();//宽度
 		int wmbfheight = wmbf.getHeight();//高度
 		float wmbfBl = (float)wmbfwidth / wmbfheight;//宽高比例
@@ -524,6 +526,6 @@ public class WatermarkFactory {
 		//WatermarkFactory.createWatermark("淘水印", 80, 30, 0.2f, 0, "f:/shuiyin/12.png", "f:/shuiyin/11.png", "华文行楷");
 		//WatermarkFactory.zoomImage("F:/shuiyin/shuiyin1.png", 2300, 4100, true);//缩放图片
 		//WatermarkFactory.merger("F:/shuiyin/1.jpg", "F:/shuiyin/shuiyin1.png", "F:/shuiyin/new.png", 3, 5, 1);
-		createImageWatermark("F:/shuiyin/icon2.png", 400, 400, 4, 0.8f, 0.9f, "F:/shuiyin/shuiyin1.png");
+		createImageWatermark("F:/shuiyin/icon2.png", 400, 400, 4, 0.8f, 0.9f, 10, "F:/shuiyin/shuiyin1.png");
 	}
 }
