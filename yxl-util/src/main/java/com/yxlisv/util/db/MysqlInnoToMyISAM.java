@@ -8,8 +8,6 @@ package com.yxlisv.util.db;
 public class MysqlInnoToMyISAM {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
