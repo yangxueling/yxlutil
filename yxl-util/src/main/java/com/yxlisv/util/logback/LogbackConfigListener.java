@@ -33,7 +33,7 @@ public class LogbackConfigListener implements ServletContextListener {
 			loggerContext.reset();
 			//把web.xml中配置的項目名稱給logback使用
 			loggerContext.putProperty("ServletContextName", event.getServletContext().getServletContextName());
-			loggerContext.putProperty("AbsPath", FilePathUtil.getWebRoot());
+			loggerContext.putProperty("log.path", FilePathUtil.getWebRoot());
 			
 			JoranConfigurator joranConfigurator = new JoranConfigurator();
 			joranConfigurator.setContext(loggerContext);

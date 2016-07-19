@@ -40,6 +40,7 @@ public class StringUtilTag extends SimpleTagSupport {
 		
 		String outStr = value;
 		if(type.equals("clearBlank")) outStr = StringUtil.clearBlank(value);
+		else if(type.equals("html")) outStr = SecurityUtil.reset(value);
 		else if(type.equals("clearHtml")) outStr = StringUtil.clearHtml(value);
 		else if(type.equals("clearHtmlBlank")) outStr = StringUtil.clearHtmlBlank(value);
 		else if(type.equals("unicode")) outStr = StringUtil.toUnicode(value);
@@ -50,7 +51,7 @@ public class StringUtilTag extends SimpleTagSupport {
 		else if(type.equals("desc")) outStr = StringUtil.formatDesc(value.toUpperCase());
 		
 		//截取长度
-		outStr = StringUtil.substringByWidth(outStr, length, "...");
+		if(length>0) outStr = StringUtil.substringByWidth(outStr, length, "...");
 		
 		out.println(outStr);
 		super.doTag();

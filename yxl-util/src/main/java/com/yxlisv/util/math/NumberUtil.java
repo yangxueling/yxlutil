@@ -53,6 +53,20 @@ public class NumberUtil {
 	}
 	
 	/**
+	 * 字符串转float
+	 * @autor yxl
+	 */
+	public static double parseFloat(Object str) {
+		if(str==null) return 0;
+		if (str.toString().trim().equals("")) return 0;
+		try{
+			return Float.parseFloat(str.toString().trim());
+		} catch(Exception e){
+			return 0;
+		}
+	}
+	
+	/**
 	 * 字符串转double
 	 * @autor yxl
 	 */

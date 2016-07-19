@@ -98,8 +98,7 @@ public class FilePathUtil {
 	 */
 	public static String getFileDir(String filePath) {
 
-		if (filePath.indexOf("/") != -1)
-			filePath = filePath.substring(0, filePath.lastIndexOf("/"));
+		if (filePath.indexOf("/") != -1) filePath = filePath.substring(0, filePath.lastIndexOf("/"));
 		return filePath;
 	}
 	
@@ -128,13 +127,13 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 得到文件名称
+	 * 获取目录中的所有文件
 	 * @param basePath 基本路径
 	 * @param folder 文件夹
 	 * @autor yxl
 	 */
 	public static List<FileInfo> getFileList(String basePath, String folder) {
-		List<FileInfo> listFileInfo = new ArrayList();
+		List<FileInfo> listFileInfo = new ArrayList<FileInfo>();
 		if (folder != null) {
 			File fileFolder = new File(basePath + "/" + folder);
 			if (fileFolder.exists() && fileFolder.isDirectory()) {// 进入文件夹

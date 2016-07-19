@@ -4,6 +4,7 @@ package com.yxlisv.util.exception;
  * 消息通知异常（捕获此异常，直接显示给用户）
  * @author yxl
  */
+@SuppressWarnings("serial")
 public class MessageException extends RuntimeException{
 
 	/** 消息分隔符 */

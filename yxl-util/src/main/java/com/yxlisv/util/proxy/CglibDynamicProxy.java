@@ -1,4 +1,4 @@
-package com.yxlisv.util.proxy;
+/*package com.yxlisv.util.proxy;
 
 import java.lang.reflect.Method;
 
@@ -8,23 +8,23 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import com.yxlisv.util.Page;
 
-/**
+*//**
  * CGLIB動態代理
  * @createTime 2016年1月20日 下午2:44:59 
  * @author yxl
- */
+ *//*
 public class CglibDynamicProxy implements MethodInterceptor {
 	
-	/** 被代理的對象 */
+	*//** 被代理的對象 *//*
 	private Object target;
-	/** 代理對象 */
+	*//** 代理對象 *//*
 	private Object proxy;
-	/** 獲取代理對象 */
+	*//** 獲取代理對象 *//*
 	public Object getProxy() {
 		return proxy;
 	}
 	
-	/** 創建動態代理類 */
+	*//** 創建動態代理類 *//*
 	public CglibDynamicProxy(Object target) {
 		this.target = target;
 		//創建代理對象
@@ -49,4 +49,4 @@ public class CglibDynamicProxy implements MethodInterceptor {
 		System.out.println("pn = " + page.getPn());
 		System.out.println();
 	}
-}
+}*/

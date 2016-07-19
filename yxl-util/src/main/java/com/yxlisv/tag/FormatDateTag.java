@@ -46,6 +46,7 @@ public class FormatDateTag extends SimpleTagSupport {
 		else if(type.equals("second")) out.print(DateUtil.toSecond(value));
 		else if(type.equals("hourMinute")) out.print(DateUtil.toHourMinute(value));
 		else if(type.equals("hourMinuteSecond")) out.print(DateUtil.toHourMinuteSecond(value));
+		else if(type.equals("duration")) out.print(DateUtil.formatDuration(value));
 		else if(type.equals("ai")) out.print(DateUtil.toAi(value));
 		else if(type.equals("ai1")) out.print(DateUtil.toAi1(value));
 		else out.print(DateUtil.toTime(value));

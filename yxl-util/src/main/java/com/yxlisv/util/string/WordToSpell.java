@@ -85,6 +85,6 @@ public class WordToSpell {
 	}
 
 	public static void main(String[] arg) throws UnsupportedEncodingException {
-		System.out.println(getLetter("你士大df夫地方"));
+		System.out.println(WordToSpell.getLetter("你士大df夫地方"));
 	}
 }

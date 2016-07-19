@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtil {
 
 	/**
-	 *	根据key在cookie中获取值
+	 * 根据key在cookie中获取值
 	 * @date 2015年12月12日 下午2:38:04 
 	 * @author yxl
 	 */

@@ -108,46 +108,47 @@ public class FileUtil {
 			if(writer != null) writer.close();
 		}
 	}
-
-	/**  
-	 * 写文件
-	 *   
-	 * @param filePath  文件路径
-	 * @param content  文件内容
-	 * @throws IOException 
+	
+	/**
+	 * <p>写文件</p>
+	 * <p>使用UTF-8编码</p>
+	 * @param filePath 文件路径
+	 * @param content 文件内容
+	 * @author 杨雪令
+	 * @time 2016年7月14日上午11:06:55
+	 * @version 1.0
 	 */
 	public static void write(String filePath, String content) throws IOException {
 
+		write(filePath, content, null);
+	}
+
+	/**
+	 * <p>写文件</p>
+	 * @param filePath 文件路径
+	 * @param content 文件内容
+	 * @param charsetName 文件编码
+	 * @author 杨雪令
+	 * @time 2016年7月14日上午11:06:55
+	 * @version 1.0
+	 */
+	public static void write(String filePath, String content, String charsetName) throws IOException {
+
+		if(charsetName == null || charsetName.length()>30) charsetName = "UTF-8";
 		filePath = URLUtil.getStandardUrl(filePath);
 
 		// 构建目录
-		if (filePath.lastIndexOf("/") != -1) {
-			File _fileDir = new File(filePath.substring(0, filePath.lastIndexOf("/")));
-			if (!_fileDir.exists())
-				_fileDir.mkdirs();
-		}
+		FilePathUtil.mkFileDirs(filePath);
 
 		OutputStreamWriter ops = null;
 		try {
-			ops = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");
+			ops = new OutputStreamWriter(new FileOutputStream(filePath), charsetName);
 			ops.write(content);
 		} finally {
 			if (ops != null) ops.close();
 		}
 	}
 
-	/**  
-	 * 写文件
-	 *   
-	 * @param fileDir  文件目录
-	 * @param fileName 文件名称
-	 * @param content  文件内容
-	 * @throws IOException 
-	 */
-	public static void write(String fileDir, String fileName, String content) throws IOException {
-
-		FileUtil.write(fileDir + "/" + fileName, content);
-	}
 
 	/**
 	 * 描述：批量修改文件(文件名或者内容)
@@ -697,9 +698,8 @@ public class FileUtil {
 		FileOutputStream fos = null;
 		try{
 			// 给文件创建相关的目录
-			String targetDir = targetFilePath.substring(0, targetFilePath.lastIndexOf("/"));
-			new File(targetDir).mkdirs();
-			// System.out.println(targetDir);
+			File dir = new File(targetFilePath).getParentFile();
+			if(!dir.exists()) dir.mkdirs();
 
 			fis = fileFis;
 			fos = new FileOutputStream(new File(targetFilePath));

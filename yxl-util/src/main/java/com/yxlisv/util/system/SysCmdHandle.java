@@ -36,6 +36,7 @@ public class SysCmdHandle {
 	 * @return 501 超时
 	 * @autor yxl
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked", "finally" })
 	public Map excute(String cmdStr) {
 		
 		final Map map = new HashMap();

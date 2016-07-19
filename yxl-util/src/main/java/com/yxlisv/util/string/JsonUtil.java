@@ -3,9 +3,11 @@ package com.yxlisv.util.string;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * json工具类
@@ -35,13 +37,31 @@ public class JsonUtil {
 	 * @param jsonArray json数组
 	 * @autor yxl
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static List<Map> jsonArrayToList(String json){
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			return objectMapper.readValue(json, List.class);
 		} catch (Exception e) {
 			logger.error("jsonArrayToList error : " + json, e);
+			return null;
+		}
+	}
+	
+	/**
+	 * <p>对象转换为json字符串</p>
+	 * @param obj 要转换的对象
+	 * @return String json字符串
+	 * @author 杨雪令
+	 * @time 2016年4月15日下午4:51:19
+	 * @version 1.0
+	 */
+	public static String toJson(Object obj){
+		ObjectMapper mapper = new ObjectMapper();  
+		try {
+			return mapper.writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			logger.error("toJson error : " + obj, e);
 			return null;
 		}
 	}

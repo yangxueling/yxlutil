@@ -32,15 +32,15 @@ public class DateUtil {
 	 * @author yxl
 	 */
 	public static SimpleDateFormat newInstanceFormat(String pattern) {
-		//自动识别英文格式时间
-		if(pattern.contains("yyyy-MM-dd")){
+		// 自动识别英文格式时间
+		if (pattern.contains("yyyy-MM-dd")) {
 			Locale locale = I18nUtil.getLocale();
-			if(locale!=null && locale.toString().contains(("en"))) {
+			if (locale != null && locale.toString().contains(("en"))) {
 				pattern = pattern.replaceAll("yyyy-MM-dd", "MM-dd-yyyy");
 			}
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		//从当前线程读取时区
+		// 从当前线程读取时区
 		TimeZone zone = TimeZoneUtil.get();
 		if (zone != null) sdf.setTimeZone(zone);
 		return sdf;
@@ -193,8 +193,7 @@ public class DateUtil {
 
 		return df.format(c.getTime());
 	}
-	
-	
+
 	/**
 	 * 智能处理
 	 * @date 2015年12月4日 下午2:58:14 
@@ -203,20 +202,20 @@ public class DateUtil {
 	public static String toAi(long time) {
 		String returnStr = "";
 		long currentTime = System.currentTimeMillis();
-		if(currentTime-time < 60*1000) {//小于一分钟
-			returnStr = (currentTime-time)/1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
-		} else if(currentTime-time < 60*60*1000){//小于一小时
-			returnStr = (currentTime-time)/1000/60 + DateI18nUtil.getI18n(DateI18nUtil.KEY_MINUTES) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
-		} else if(currentTime-time < 24*60*60*1000){//小于一天
-			returnStr = (currentTime-time)/60/60/1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_HOUR) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
-		} else if(currentTime-time < 10*24*60*60*1000){//小于十天
-			returnStr = (currentTime-time)/24/60/60/1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_DAY) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
+		if (currentTime - time < 60 * 1000) {// 小于一分钟
+			returnStr = (currentTime - time) / 1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
+		} else if (currentTime - time < 60 * 60 * 1000) {// 小于一小时
+			returnStr = (currentTime - time) / 1000 / 60 + DateI18nUtil.getI18n(DateI18nUtil.KEY_MINUTES) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
+		} else if (currentTime - time < 24 * 60 * 60 * 1000) {// 小于一天
+			returnStr = (currentTime - time) / 60 / 60 / 1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_HOUR) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
+		} else if (currentTime - time < 10 * 24 * 60 * 60 * 1000) {// 小于十天
+			returnStr = (currentTime - time) / 24 / 60 / 60 / 1000 + DateI18nUtil.getI18n(DateI18nUtil.KEY_DAY) + DateI18nUtil.getI18n(DateI18nUtil.KEY_AGO);
 		} else {
 			returnStr = toDate(time);
 		}
 		return returnStr;
 	}
-	
+
 	/**
 	 * 智能处理
 	 * @date 2015年12月4日 下午2:58:14 
@@ -225,14 +224,14 @@ public class DateUtil {
 	public static String toAi1(long time) {
 		String returnStr = "";
 		long currentTime = System.currentTimeMillis();
-		if(currentTime-time < 10*24*60*60*1000){//小于十天
+		if (currentTime - time < 10 * 24 * 60 * 60 * 1000) {// 小于十天
 			returnStr = toAi(time);
 		} else {
 			returnStr = toTime(time);
 		}
 		return returnStr;
 	}
-	
+
 	/**
 	 * 传入一个日期字符串，返回星期几
 	 * @param date 時間：yyyy-MM-dd
@@ -279,6 +278,7 @@ public class DateUtil {
 	 * @param date 时间(yyyy-MM-dd)
 	 * @param ofDay 星期几
 	 */
+	@SuppressWarnings("static-access")
 	public static String getDateOfWeekDay(String date, int ofDay) {
 		String year = date.substring(0, 4);
 		String month = date.substring(5, 7);
@@ -288,7 +288,7 @@ public class DateUtil {
 		SimpleDateFormat df = newInstanceFormat("yyyy-MM-dd");
 
 		c.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
-		//如果要得到星期天的时间，星期天在国外是一个星期的第一天
+		// 如果要得到星期天的时间，星期天在国外是一个星期的第一天
 		if (ofDay >= 7) ofDay = 0;
 		c.set(c.DAY_OF_WEEK, ofDay + 1);
 
@@ -326,12 +326,35 @@ public class DateUtil {
 		}
 		return status;
 	}
+	
+	
+	/**
+	 * <p>获取传入时间所在月份的第一天</p>
+	 * @param date 时间
+	 * @author 杨雪令
+	 * @time 2016年6月6日下午4:52:25
+	 * @version 1.0
+	 */
+	public static String getFirstDateOfMonth(String date) {
+		date = DateUtil.toDate(DateUtil.toLong(date));
+		String year = date.substring(0, 4);
+		String month = date.substring(5, 7);
+		
+		
+		Calendar c = Calendar.getInstance();
+
+		c.set(Integer.parseInt(year), Integer.parseInt(month)-1, 1);
+
+		SimpleDateFormat df = newInstanceFormat("yyyy-MM-dd");
+		return df.format(c.getTime());
+	}
 
 	/**
 	 * 得到一个月以后的日期
 	 * @param date 時間
 	 */
 	public static String getDateOfNextMonth(String date) {
+		date = DateUtil.toDate(DateUtil.toLong(date));
 		String year = date.substring(0, 4);
 		String month = date.substring(5, 7);
 		String day = date.substring(8, 10);
@@ -344,105 +367,25 @@ public class DateUtil {
 	}
 
 	/**
-	 * 得到一个月以后的日期
-	 * @param date 時間
-	 * @param ofDay 第幾天
+	 * <p>格式化时间</p>
+	 * @param duration 时长，单位毫秒
+	 * @return String eg:5 天 3 小时 20 分钟 20 秒
+	 * @author 杨雪令
+	 * @time 2016年4月6日上午11:06:24
+	 * @version 1.0
 	 */
-	public static String getDateInMonth(String date, int ofDay) {
-
-		String year = date.substring(0, 4);
-		String month = date.substring(5, 7);
-		Calendar c = Calendar.getInstance();
-		c.set(Integer.parseInt(year), Integer.parseInt(month) - 1, ofDay);
-		SimpleDateFormat df = newInstanceFormat("yyyy-MM-dd");
-		return df.format(c.getTime());
-	}
-
-	/**
-	 * 得到一个月以后的日期
-	 * @param date 時間
-	 * @param ofDay 第幾天
-	 */
-	public static String getDateInMonth(long date, int ofDay) {
-		return DateUtil.getDateInMonth(DateUtil.toDate(date), ofDay);
-	}
-	
-	/**
-	 * 根据开始时间和结束时间，获取每一天的集合
-	 * @date 2015年11月30日 下午5:20:52 
-	 * @author yxl
-	 */
-	public static List<String> getDayList(String startDate, String endDate){
-		List<String> dayList = new ArrayList<String>();
-		long startDateLong = toLong(toDate(toLong(startDate)));
-		long endDateLong = toLong(toDate(toLong(endDate)));
-		int days = (int) ((endDateLong - startDateLong) /ONE_DAY) + 1;
-		for(int i=0; i<days; i++){
-			dayList.add(toDate(startDateLong+ONE_DAY*i));
-		}
-		return dayList;
-	}
-
-	/**
-	 * 获取Select需要的数据
-	 * @param yearCount 生成年份的数量
-	 */
-	public static Map getSelectData(int yearCount) {
-
-		Map map = new HashMap();
-		//年份数据
-		List yearList = new ArrayList();
-		int currentYear = Integer.parseInt(DateUtil.toYear(System.currentTimeMillis()));
-		int startYear = currentYear - yearCount + 5;
-		int endYear = currentYear + yearCount + 5;
-		if (startYear > currentYear) startYear = currentYear;
-		for (int i = startYear; i < endYear; i++) {
-			if (i < 10) yearList.add("0" + i);
-			else yearList.add(i);
-		}
-
-		//月份数据
-		List monthList = new ArrayList();
-		for (int i = 1; i <= 12; i++) {
-			if (i < 10) monthList.add("0" + i);
-			else monthList.add(i);
-		}
-
-		//日数据
-		List dayList = new ArrayList();
-		for (int i = 1; i <= 31; i++) {
-			if (i < 10) dayList.add("0" + i);
-			else dayList.add(i);
-		}
-
-		//小时数据
-		List hourList = new ArrayList();
-		for (int i = 0; i < 24; i++) {
-			if (i < 10) hourList.add("0" + i);
-			else hourList.add(i);
-		}
-
-		//分数据
-		List minuteList = new ArrayList();
-		for (int i = 0; i < 60; i++) {
-			if (i < 10) minuteList.add("0" + i);
-			else minuteList.add(i);
-		}
-
-		//秒数据
-		List secondList = new ArrayList();
-		for (int i = 0; i < 60; i++) {
-			if (i < 10) secondList.add("0" + i);
-			else secondList.add(i);
-		}
-
-		map.put("yearList", yearList);
-		map.put("monthList", monthList);
-		map.put("dayList", dayList);
-		map.put("hourList", hourList);
-		map.put("minuteList", minuteList);
-		map.put("secondList", secondList);
-		return map;
+	public static String formatDuration(long duration) {
+		long millisecond = duration % 1000;// 毫秒
+		long sec = (duration / 1000) % 60;// 秒
+		long min = (duration / 1000 / 60) % 60;// 分钟
+		long hour = (duration / 1000 / 60 / 60) % 24;// 小时
+		long day = duration / 1000 / 60 / 60 / 24;// 天
+		String separator = " ";//分隔符
+		if (day > 0) return day + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_DAY) + separator + hour + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_HOUR) + separator + min + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_MINUTES) + separator + sec + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS);
+		if (hour > 0) return hour + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_HOUR) + separator + min + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_MINUTES) + separator + sec + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS);
+		if (min > 0) return min + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_MINUTES) + separator + sec + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS);
+		if (sec > 0) return sec + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_SECONDS);
+		return millisecond + separator + DateI18nUtil.getI18n(DateI18nUtil.KEY_MILLISECOND);
 	}
 
 	/**
@@ -450,23 +393,27 @@ public class DateUtil {
 	 * @autor yxl
 	 */
 	public static void main(String[] args) {
-		/*String date = "2013-08-24";
-		date = "20150627121415000 0800";
-		long tl = DateUtil.toLong(date);
-		System.out.println(tl);
-		System.out.println(DateUtil.toTime(tl));*/
+		/*
+		 * String date = "2013-08-24"; date = "20150627121415000 0800"; long tl
+		 * = DateUtil.toLong(date); System.out.println(tl);
+		 * System.out.println(DateUtil.toTime(tl));
+		 */
+
+		// List dayList = DateUtil.getDayList("2013-4-6 14:20:33", "2013-4-8");
+		// System.out.println(dayList);
+		//System.out.println(formatDuration(1452));
+		/*
+		 * System.out.println(toAi(toLong("2015-11-4 15:13")));
+		 * System.out.println(toAi(toLong("2015-12-1 15:13")));
+		 * System.out.println(toAi(toLong("2015-12-3 15:13")));
+		 * System.out.println(toAi(toLong("2015-12-4 11:13")));
+		 * System.out.println(toAi(toLong("2015-12-4 15:13")));
+		 * System.out.println(toAi(System.currentTimeMillis()-1000*800));
+		 * System.out.println(toAi(System.currentTimeMillis()-1000*80));
+		 * System.out.println(toAi(System.currentTimeMillis()-1000*5));
+		 * System.out.println(toAi(System.currentTimeMillis()));
+		 */
 		
-		//List dayList = DateUtil.getDayList("2013-4-6 14:20:33", "2013-4-8");
-		//System.out.println(dayList);
-		System.out.println(toTime(1450332692048l));
-		/*System.out.println(toAi(toLong("2015-11-4 15:13")));
-		System.out.println(toAi(toLong("2015-12-1 15:13")));
-		System.out.println(toAi(toLong("2015-12-3 15:13")));
-		System.out.println(toAi(toLong("2015-12-4 11:13")));
-		System.out.println(toAi(toLong("2015-12-4 15:13")));
-		System.out.println(toAi(System.currentTimeMillis()-1000*800));
-		System.out.println(toAi(System.currentTimeMillis()-1000*80));
-		System.out.println(toAi(System.currentTimeMillis()-1000*5));
-		System.out.println(toAi(System.currentTimeMillis()));*/
+		System.out.println(getFirstDateOfMonth("2015-12-3 15:13"));
 	}
 }

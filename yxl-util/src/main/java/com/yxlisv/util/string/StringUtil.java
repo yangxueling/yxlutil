@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.yxlisv.util.math.NumberUtil;
+import com.yxlisv.util.security.SecurityUtil;
 
 /**
  * string 工具类
@@ -98,6 +99,7 @@ public class StringUtil {
 	 * @autor yxl
 	 */
 	public static String clearHtml(String htmlCode){
+		htmlCode = SecurityUtil.reset(htmlCode);
 		htmlCodeMatcher = jbStylePt.matcher(htmlCode);
 		htmlCode = htmlCodeMatcher.replaceAll("");
 		htmlCodeMatcher = htmlCodePt.matcher(htmlCode);
@@ -259,6 +261,7 @@ public class StringUtil {
 	 */
     public static String clearBlank(String str) {
         if(str!=null && !str.equals("")) {
+        	str = str.replaceAll("　", " ");
             Pattern p = Pattern.compile("\\s*|\t|\r|\n");
             Matcher m = p.matcher(str);
             String strNoBlank = m.replaceAll("");
@@ -280,6 +283,11 @@ public class StringUtil {
         Matcher m = p.matcher(htmlCode);
         htmlCode = m.replaceAll("");
         
+        //多个空格替换为一个空格
+    	p = Pattern.compile("\\s+");
+        m = p.matcher(htmlCode);
+        htmlCode = m.replaceAll(" ");
+        
         //替换标签之间的空格
     	p = Pattern.compile(">\\s+<");
         m = p.matcher(htmlCode);
@@ -300,16 +308,27 @@ public class StringUtil {
     
     
     /**
-	 * html编码
-	 * @param htmlCode
-	 * @return
-	 * @autor yxl
-	 * 2014-9-17
+	 * <p>html Escape编码</p>
+	 * @param htmlCode html代码
+	 * @return String Escape编码后的html代码
+	 * @author 杨雪令
+	 * @time 2016年4月22日下午3:28:33
+	 * @version 1.0
 	 */
 	public static String htmlEscape(String htmlCode){
-		htmlCode = htmlCode.replaceAll("<", "&lt;");
-		htmlCode = htmlCode.replaceAll(">", "&gt;");
-		return htmlCode;
+		return htmlCode.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+	}
+	
+	/**
+	 * <p>html解码</p>
+	 * @param htmlCode html代码
+	 * @return String 解码后的html代码
+	 * @author 杨雪令
+	 * @time 2016年4月22日下午3:28:33
+	 * @version 1.0
+	 */
+	public static String htmlUnEscape(String htmlCode){
+		return htmlCode.replaceAll("&lt;", "<").replaceAll("&gt;", ">");
 	}
     
     /**
@@ -526,5 +545,10 @@ public class StringUtil {
 		
 		str="public static void main(String[] args) {";
 		System.out.println(substringByWidth(str, 10, "..."));*/
+		
+		
+		String s = "0755-8 2956	263　2";
+		System.out.println(s.length());
+		System.out.println(StringUtil.clearBlank(s));
 	}
 }

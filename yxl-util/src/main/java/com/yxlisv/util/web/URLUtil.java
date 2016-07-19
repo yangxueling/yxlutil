@@ -86,7 +86,7 @@ public class URLUtil {
 	
 	public static void main(String[] args) {
 		String url = "http://www.google.com?t=2";
-		Map paramMap = new HashMap();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("name", "测试");
 		paramMap.put("pageSize", "100");
 		

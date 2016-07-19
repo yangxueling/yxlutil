@@ -18,15 +18,16 @@ import com.yxlisv.util.string.JsonUtil;
 public class ShortURL {
 	
 	/** 定义一个全局的记录器，通过LoggerFactory获取  */
-	protected static Logger logger = LoggerFactory.getLogger(HttpSessionCache.class);
+	protected static Logger logger = LoggerFactory.getLogger(ShortURL.class);
 
 	/**
 	 * 从dwz.cn获取
 	 * @param url 要生成的网址
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String getDwz(String url){
 		String shortUrl = url;
-		Map paramMap = new HashMap();
+		Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("url", url);
 		try {
 			String responseStr = HttpConnection.sendPost("http://dwz.cn/create.php", paramMap);

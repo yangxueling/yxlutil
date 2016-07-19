@@ -34,7 +34,7 @@ public class I18nUtil {
 			ResourceBundle bundle = ResourceBundle.getBundle(fileName, locale);
 			msgStr = bundle.getString(key);
 		} catch (Exception e) {
-			logger.error("I18N not found: " + fileName + "[" + key + "]" + locale.getLanguage());
+			logger.debug("I18N not found: " + fileName + "[" + key + "]" + locale.getLanguage());
 		}
 		return msgStr;
 	}

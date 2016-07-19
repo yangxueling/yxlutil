@@ -12,6 +12,8 @@ import com.yxlisv.util.i18n.I18nUtil;
  * @author yxl
  */
 public class DateI18nUtil {
+	/** key 毫秒 */
+	public static String KEY_MILLISECOND = "MILLISECOND";
 	/** key 秒 */
 	public static String KEY_SECONDS = "SECONDS";
 	/** key 分 */
@@ -26,8 +28,11 @@ public class DateI18nUtil {
 	/** 国际化map */
 	private static Map<String, String> i18nMap = new HashMap<String, String>();
 	static {
+		i18nMap.put(KEY_MILLISECOND, "毫秒");
+		i18nMap.put(KEY_MILLISECOND + "_US", "ms");
+		
 		i18nMap.put(KEY_SECONDS, "秒");
-		i18nMap.put(KEY_SECONDS + "_US", "seconds");
+		i18nMap.put(KEY_SECONDS + "_US", "s");
 		
 		i18nMap.put(KEY_MINUTES, "分钟");
 		i18nMap.put(KEY_MINUTES + "_HK", "分鐘");
